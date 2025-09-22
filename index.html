@@ -13,19 +13,17 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #ff6b6b, #d63030);
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0);
             height: 100vh;
             overflow: hidden;
             position: relative;
-            margin: 0;
-            padding: 0;
         }
 
         /* Balloon animation */
         .balloon {
             position: absolute;
-            width: 30px;
-            height: 40px;
+            width: 40px;
+            height: 50px;
             border-radius: 50%;
             animation: float 8s infinite ease-in-out;
             z-index: -1;
@@ -34,11 +32,11 @@
         .balloon:before {
             content: "";
             position: absolute;
-            bottom: -8px;
+            bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
             width: 1px;
-            height: 20px;
+            height: 30px;
             background: rgba(255, 255, 255, 0.5);
         }
 
@@ -102,8 +100,8 @@
         /* Confetti */
         .confetti {
             position: absolute;
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             opacity: 0.7;
             animation: confetti-fall 5s linear infinite;
         }
@@ -125,7 +123,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 5px;
+            padding: 10px;
             text-align: center;
             position: relative;
             z-index: 10;
@@ -134,19 +132,19 @@
         /* Header styling */
         h1 {
             font-family: 'Brush Script MT', cursive;
-            font-size: 2.5rem;
+            font-size: 4rem;
             color: #fff;
-            text-shadow: 0 0 10px #fff, 0 0 20px #d63030, 0 0 30px #d63030, 0 0 40px #d63030;
-            margin: 5px 0;
+            text-shadow: 0 0 15px #fff, 0 0 30px #d63030, 0 0 45px #d63030, 0 0 60px #d63030;
+            margin: 10px 0;
             animation: glow 1.5s ease-in-out infinite alternate;
         }
 
         @keyframes glow {
             from {
-                text-shadow: 0 0 15px #fff, 0 0 30px #fff, 0 0 45px #d63030, 0 0 60px #d63030;
+                text-shadow: 0 0 20px #fff, 0 0 40px #fff, 0 0 60px #d63030, 0 0 80px #d63030;
             }
             to {
-                text-shadow: 0 0 30px #fff, 0 0 60px #fff, 0 0 90px #d63030, 0 0 120px #d63030, 0 0 150px #d63030;
+                text-shadow: 0 0 40px #fff, 0 0 80px #fff, 0 0 120px #d63030, 0 0 160px #d63030, 0 0 200px #d63030;
             }
         }
 
@@ -162,8 +160,8 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
-            padding: 5px;
+            gap: 30px;
+            padding: 20px;
             flex: 1;
             overflow: hidden;
         }
@@ -172,14 +170,14 @@
         .message-section {
             background: rgba(255, 255, 255, 0.85);
             border-radius: 15px;
-            padding: 10px;
+            padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
             backdrop-filter: blur(5px);
             animation: fadeIn 1.5s ease-out;
             flex: 1;
-            min-width: 250px;
-            max-width: 90%;
-            max-height: 200px;
+            min-width: 400px;
+            max-width: 550px;
+            max-height: 400px;
             overflow-y: hidden; /* Remove scrollbar */
             display: flex;
             flex-direction: column;
@@ -188,13 +186,13 @@
 
         .message-section h2 {
             color: #d35400;
-            margin-bottom: 8px;
-            font-size: 1.5rem;
+            margin-bottom: 15px;
+            font-size: 2.2rem;
         }
 
         .message-section p {
-            font-size: 1rem;
-            line-height: 1.4;
+            font-size: 1.4rem;
+            line-height: 1.5;
             color: #333;
         }
 
@@ -202,23 +200,23 @@
         .photo-section {
             animation: slideIn 1s ease-out;
             flex: 1;
-            min-width: 250px;
-            max-width: 90%;
+            min-width: 350px;
+            max-width: 400px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .photo-placeholder {
-            width: 200px;
-            height: 200px;
+            width: 350px;
+            height: 350px;
             background: linear-gradient(45deg, #ffd166, #ff9a8b);
             border-radius: 50%;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 3px solid #fff;
+            border: 5px solid #fff;
             overflow: hidden;
             position: relative;
             animation: bubbleEffect 3s ease-in-out infinite;
@@ -230,130 +228,130 @@
             object-fit: cover;
         }
 
+        @keyframes bubbleEffect {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 20px #ffd166, 0 0 40px #ff9a8b;
+            }
+            50% {
+                transform: scale(1.15);
+                box-shadow: 0 0 60px #ffd166, 0 0 120px #ff9a8b, 0 0 180px #ff6b6b;
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px #ffd166, 0 0 40px #ff9a8b;
+            }
+        }
+
         /* Cake section under photo */
         .cake {
             position: relative;
-            width: 120px;
-            height: 100px;
-            margin: 15px auto 0;
+            width: 150px;
+            height: 120px;
+            margin: 20px auto 0;
         }
 
         .cake-plate {
-            width: 140px;
-            height: 15px;
+            width: 170px;
+            height: 20px;
             background: #ddd;
             border-radius: 50%;
             margin: 0 auto;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
 
         .cake-layer {
             position: absolute;
-            width: 120px;
-            height: 40px;
+            width: 150px;
+            height: 50px;
             background: #f8c4d5;
             border-radius: 10px 10px 0 0;
-            bottom: 15px;
+            bottom: 20px;
             left: 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
 
         .cake-layer:nth-child(2) {
-            width: 90px;
-            height: 30px;
+            width: 120px;
+            height: 40px;
             background: #f5a9c2;
-            bottom: 45px;
+            bottom: 60px;
             left: 25px;
         }
 
         .cake-layer:nth-child(3) {
-            width: 60px;
-            height: 20px;
+            width: 90px;
+            height: 30px;
             background: #f28bac;
-            bottom: 65px;
+            bottom: 90px;
             left: 40px;
         }
 
         .candle {
             position: absolute;
-            width: 4px;
-            height: 20px;
+            width: 6px;
+            height: 25px;
             background: #4ecdc4;
-            bottom: 85px;
-            left: 58px;
+            bottom: 120px;
+            left: 72px;
             z-index: 10;
         }
 
         .candle:nth-child(2) {
-            left: 53px;
+            left: 65px;
         }
 
         .candle:nth-child(3) {
-            left: 63px;
+            left: 79px;
         }
 
         .flame {
             position: absolute;
-            width: 8px;
-            height: 12px;
+            width: 10px;
+            height: 15px;
             background: #ffd166;
             border-radius: 50% 50% 20% 20%;
-            bottom: 105px;
-            left: 56px;
+            bottom: 145px;
+            left: 70px;
             animation: flicker 0.8s infinite alternate;
-            box-shadow: 0 0 6px #ff9a8b, 0 0 12px #ff6b6b;
+            box-shadow: 0 0 8px #ff9a8b, 0 0 15px #ff6b6b;
             z-index: 11;
         }
 
         .flame:nth-child(2) {
-            left: 51px;
+            left: 63px;
         }
 
         .flame:nth-child(3) {
-            left: 61px;
+            left: 77px;
         }
 
         @keyframes flicker {
             0% { opacity: 0.7; transform: scale(1) translateY(0); }
-            100% { opacity: 1; transform: scale(1.1) translateY(-2px); }
-        }
-
-        @keyframes bubbleEffect {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 15px #ffd166, 0 0 30px #ff9a8b;
-            }
-            50% {
-                transform: scale(1.1);
-                box-shadow: 0 0 45px #ffd166, 0 0 90px #ff9a8b, 0 0 135px #ff6b6b;
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 15px #ffd166, 0 0 30px #ff9a8b;
-            }
+            100% { opacity: 1; transform: scale(1.1) translateY(-3px); }
         }
 
         /* Music player */
         .music-player {
             background: rgba(255, 255, 255, 0.85);
             border-radius: 15px;
-            padding: 8px;
+            padding: 10px;
             margin: 10px auto;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
             backdrop-filter: blur(5px);
-            max-width: 90%;
+            max-width: 300px;
         }
 
         .music-player h3 {
             color: #d35400;
-            margin-bottom: 6px;
-            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-size: 1.3rem;
         }
 
         .controls {
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
             margin-top: 8px;
         }
 
@@ -361,7 +359,7 @@
             background: #ff6b6b;
             color: white;
             border: none;
-            padding: 6px 12px;
+            padding: 8px 15px;
             border-radius: 50px;
             font-size: 0.9rem;
             cursor: pointer;
@@ -400,8 +398,8 @@
         footer {
             color: white;
             text-align: center;
-            padding: 8px;
-            font-size: 0.8rem;
+            padding: 10px;
+            font-size: 0.9rem;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
@@ -418,12 +416,12 @@
             }
             
             .photo-placeholder {
-                width: 180px;
-                height: 180px;
+                width: 150px;
+                height: 150px;
             }
             
             h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
         }
 
@@ -433,7 +431,7 @@
             }
             
             .message-section h2 {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
             }
             
             .message-section p {
@@ -441,39 +439,16 @@
             }
             
             .photo-placeholder {
-                width: 160px;
-                height: 160px;
+                width: 120px;
+                height: 120px;
             }
             
             .cake {
-                transform: scale(0.9);
+                transform: scale(0.8);
             }
             
             .btn {
-                padding: 5px 10px;
-                font-size: 0.8rem;
-            }
-            
-            footer {
-                font-size: 0.7rem;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            .photo-placeholder {
-                width: 140px;
-                height: 140px;
-            }
-            
-            .message-section h2 {
-                font-size: 1.1rem;
-            }
-            
-            .message-section p {
+                padding: 6px 12px;
                 font-size: 0.8rem;
             }
         }
