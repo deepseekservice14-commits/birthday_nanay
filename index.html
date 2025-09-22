@@ -335,11 +335,11 @@
         .music-player {
             background: rgba(255, 255, 255, 0.85);
             border-radius: 15px;
-            padding: 10px;
+            padding: 15px;
             margin: 10px auto;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
             backdrop-filter: blur(5px);
-            max-width: 300px;
+            max-width: 400px;
         }
 
         .music-player h3 {
@@ -347,7 +347,34 @@
             margin-bottom: 8px;
             font-size: 1.3rem;
         }
-
+        
+        .playlist {
+            list-style: none;
+            padding: 10px 0;
+            margin: 10px 0;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .playlist li {
+            padding: 8px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .playlist li:hover {
+            background: rgba(255, 107, 107, 0.3);
+        }
+        
+        .playlist li.active {
+            background: #ff6b6b;
+            color: white;
+            font-weight: bold;
+        }
+        
         .controls {
             display: flex;
             justify-content: center;
@@ -497,11 +524,17 @@
         </div>
         
         <section class="music-player">
-            <h3>Birthday Music</h3>
-            <p>Click to play!</p>
+            <h3>Birthday Music Playlist</h3>
+            <ul class="playlist" id="songList">
+                <li data-src="Kool & The Gang - Celebration.mp3" class="active">1. Kool & The Gang - Celebration</li>
+                <li data-src="Paul Anka- Diana.mp3">2. Paul Anka - Diana</li>
+                <li data-src="Carmelita - Victor Wood Lyric Video.mp3">3. Carmelita - Victor Wood</li>
+            </ul>
             <div class="controls">
-                <button class="btn" id="playBtn">Play Music</button>
-                <button class="btn" id="pauseBtn">Pause Music</button>
+                <button class="btn" id="playBtn">Play</button>
+                <button class="btn" id="pauseBtn">Pause</button>
+                <button class="btn" id="prevBtn">Previous</button>
+                <button class="btn" id="nextBtn">Next</button>
             </div>
         </section>
         
@@ -538,48 +571,98 @@
         
         // Audio element for birthday music
         let audio = null;
+        let currentSongIndex = 0;
+        const songs = [
+            { src: "Kool & The Gang - Celebration.mp3", title: "Kool & The Gang - Celebration" },
+            { src: "Paul Anka- Diana.mp3", title: "Paul Anka - Diana" },
+            { src: "Carmelita - Victor Wood Lyric Video.mp3", title: "Carmelita - Victor Wood" }
+        ];
         
-        // Play birthday music
-        function playMusic() {
+        // Update active song in playlist
+        function updateActiveSong() {
+            const songItems = document.querySelectorAll('.playlist li');
+            songItems.forEach((item, index) => {
+                if (index === currentSongIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+        
+        // Play selected song
+        function playSong(index) {
+            currentSongIndex = index;
+            updateActiveSong();
+            
             // Try to create audio element if it doesn't exist
             if (!audio) {
                 try {
-                    // Using the local MP3 file provided by the user
-                    audio = new Audio('Kool & The Gang - Celebration.mp3');
+                    audio = new Audio();
                 } catch (e) {
                     console.log("Error creating audio:", e);
                 }
             }
             
             if (audio) {
-                audio.loop = true;
+                audio.src = songs[currentSongIndex].src;
+                audio.loop = false;
                 audio.play()
                     .then(() => {
-                        console.log("Music is playing");
+                        console.log("Playing: " + songs[currentSongIndex].title);
                         document.getElementById('playBtn').textContent = "Playing...";
                     })
                     .catch(error => {
                         console.log("Error playing music:", error);
-                        alert("Sorry, could not play the music. This might be due to browser restrictions. Please click the button again.");
-                        // Reset audio element so user can try again
-                        audio = null;
+                        alert("Sorry, could not play the music. This might be due to browser restrictions.");
                     });
             } else {
-                alert("Sorry, could not load the music file.");
+                alert("Sorry, could not load the music player.");
             }
+        }
+        
+        // Play birthday music
+        function playMusic() {
+            playSong(currentSongIndex);
         }
         
         // Pause music
         function pauseMusic() {
             if (audio) {
                 audio.pause();
-                document.getElementById('playBtn').textContent = "Play Music";
+                document.getElementById('playBtn').textContent = "Play";
             }
+        }
+        
+        // Play next song
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            playSong(currentSongIndex);
+        }
+        
+        // Play previous song
+        function prevSong() {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            playSong(currentSongIndex);
         }
         
         // Add event listeners
         document.getElementById('playBtn').addEventListener('click', playMusic);
         document.getElementById('pauseBtn').addEventListener('click', pauseMusic);
+        document.getElementById('nextBtn').addEventListener('click', nextSong);
+        document.getElementById('prevBtn').addEventListener('click', prevSong);
+        
+        // Add event listeners to playlist items
+        document.querySelectorAll('.playlist li').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                playSong(index);
+            });
+        });
+        
+        // When audio ends, play next song
+        if (audio) {
+            audio.addEventListener('ended', nextSong);
+        }
         
         // Create initial confetti
         window.addEventListener('load', () => {
