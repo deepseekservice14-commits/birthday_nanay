@@ -1,2 +1,0 @@
-# birthday_nanay
-nanay
