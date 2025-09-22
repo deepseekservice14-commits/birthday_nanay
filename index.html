@@ -516,14 +516,17 @@
             const colors = ['#ff6b6b', '#4ecdc4', '#ffd166', '#6a0572', '#1a936f', '#ff9a8b', '#118ab2'];
             const container = document.body;
             
-            for (let i = 0; i < 100; i++) {
+            // Create more confetti to cover the whole page
+            for (let i = 0; i < 200; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
                 confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = Math.random() * 100 + 'vh'; // Distribute vertically too
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
-                confetti.style.width = (Math.random() * 8 + 4) + 'px';
-                confetti.style.height = (Math.random() * 8 + 4) + 'px';
+                confetti.style.width = (Math.random() * 10 + 5) + 'px';
+                confetti.style.height = (Math.random() * 10 + 5) + 'px';
+                confetti.style.opacity = Math.random() * 0.7 + 0.3; // Variable opacity
                 container.appendChild(confetti);
                 
                 // Remove confetti after animation completes
@@ -583,7 +586,7 @@
             createConfetti();
             
             // Create more confetti periodically
-            setInterval(createConfetti, 3000);
+            setInterval(createConfetti, 2000);
         });
         
         // Try to autoplay music (most browsers block this)
